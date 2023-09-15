@@ -19,8 +19,10 @@
 							<router-link to="/uslugi">Услуги</router-link>
 						</li>
 						<li class="nav-item">
-							<router-link to="/portfolio">Портфолио</router-link>
+							<router-link to="/portfolio" @:click="profstandart()">Портфолио</router-link>
 						</li>
+					</ul>
+					<ul id="top-nav-ul" class="nav navbar-nav menu_navigator top-menu kontakt-menu">
 						<li class="nav-item">
 							<a href="https://wa.me/+79603823933?&text=Здравствуйте%2C+у+меня+есть+вопрос">
 								<font-awesome-icon icon="fa-brands fa-whatsapp" />
@@ -50,7 +52,26 @@
 
 <script>
 export default {
-	name: 'NavbarsVue'
+	name: 'NavbarsVue',
+	methods: {
+		async profstandart() {
+			this.$store.commit('INCREMENT_PRELODER', true);
+			const portfolioj = await fetch(`https://sprint-site.ru/wp-json/wpcustomusers/v2/portfolio/`);
+			const portfolioq = await portfolioj.json();
+			this.$store.commit('INCREMENT_PRELODER', false);
+			console.log(portfolioq);
+			this.$store.commit('INCREMENT_MENUTITLE', 'portfolio');
+			this.$store.commit('INCREMENT_HEIDER_HREF', 'null');
+			window.scrollTo(0, 0);
+			this.$store.commit('INCREMENT_HEIDER_LIST', "Портфолио");
+			this.$store.commit('INCREMENT_HEIDER_CENIA', 0);
+			this.$store.commit('INCREMENT_HEIDER_IMG', "/Hederprof/macbook.jpg");
+			this.$store.commit('INCREMENT_HEIDER_CONTENT', "Здесь собрана небольшая часть сайтов над которыми я работал.К сожалению большую часть сайтов я потерял при переустановке виндус. Еще часть сайтов прекратили свое существование или изменили дизайн.Некоторые мне удалось восстановить из архивов, но не все.");
+			this.$store.commit('INCREMENT_PAGE', portfolioq.page);
+			this.$store.commit('INCREMENT_PORTFOLIO', portfolioq.post);
+			this.$store.commit('INCREMENT_MAXPAGE', portfolioq.max_num_pages);
+		}
+	}
 }
 </script>
 
@@ -147,5 +168,37 @@ nav .container-fluid {
 .router-link-active:after {
 	background-color: #0cf !important;
 	width: 100% !important;
+}
+
+@media (max-width: 990px) {
+	ul.navbar-nav {
+		height: auto;
+	}
+
+	nav .container-fluid {
+		padding: 0px;
+	}
+
+	.Navbarsvue nav li {
+		position: inherit;
+		display: block;
+		width: 100%;
+		text-align: center;
+		text-align: left;
+		border-bottom: 2px solid;
+	}
+
+	.Navbarsvue nav .kontakt-menu li {
+		display: inline-block;
+		width: auto;
+		border-bottom: 0px;
+		text-align: left;
+		position: inherit;
+	}
+
+	.kontakt-menu {
+		display: flex;
+		flex-direction: row-reverse;
+	}
 }
 </style>

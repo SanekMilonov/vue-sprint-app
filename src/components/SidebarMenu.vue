@@ -55,6 +55,8 @@ export default {
 			this.$store.commit('INCREMENT_PAGE', portfolioq.page);
 			this.$store.commit('INCREMENT_PORTFOLIO', portfolioq.post);
 			this.$store.commit('INCREMENT_MAXPAGE', portfolioq.max_num_pages);
+			this.$store.commit('INCREMENT_METADESCRIPT', portfolioq.text);
+			this.$store.commit('INCREMENT_METATITLE', menu);
 		}
 	},
 }

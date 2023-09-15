@@ -14,9 +14,23 @@ const store = createStore({
 			href: "null",
 			contents: "Здесь собрана небольшая часть сайтов над которыми я работал.К сожалению большую часть сайтов я потерял при переустановке виндус. Еще часть сайтов прекратили свое существование или изменили дизайн.Некоторые мне удалось восстановить из архивов, но не все.",
 			arts: 0,
+		},
+		meta: {
+			title: "Портфолио",
+			contents: "Здесь собрана небольшая часть сайтов над которыми я работал.К сожалению большую часть сайтов я потерял при переустановке виндус. Еще часть сайтов прекратили свое существование или изменили дизайн.Некоторые мне удалось восстановить из архивов, но не все.",
 		}
 	},
 	mutations: {
+		INCREMENT_METADESCRIPT(state, payload) {
+			console.log("INCREMENT_METADESCRIPT");
+			state.meta.contents = payload;
+			console.log(state.meta.contents);
+		},
+		INCREMENT_METATITLE(state, payload) {
+			console.log("INCREMENT_METATITLE");
+			state.meta.title = payload;
+			console.log(state.meta.title);
+		},
 		INCREMENT_PAGE(state, payload) {
 			state.page = payload;
 			console.log("INCREMENT_PAGE");

@@ -10,6 +10,7 @@ import { faWhatsapp, faTelegram, faVk } from "@fortawesome/free-brands-svg-icons
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 import { faBriefcase, faAddressCard } from '@fortawesome/free-solid-svg-icons'
 import AosVue from "aos-vue";
+import { createMetaManager } from 'vue-meta'
 import LoadScript from "vue-plugin-load-script";
 import VueEllipseProgress from 'vue-ellipse-progress';
 
@@ -18,6 +19,7 @@ library.add(faWhatsapp, faEnvelope, faTelegram, faVk, faBriefcase, faAddressCard
 createApp(App)
 	.component('font-awesome-icon', FontAwesomeIcon)
 	.use(router)
+	.use(createMetaManager())
 	.use(AosVue)
 	.use(store)
 	.use(LoadScript)

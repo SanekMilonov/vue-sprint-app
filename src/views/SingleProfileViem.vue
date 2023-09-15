@@ -89,6 +89,7 @@
 import HTag from '@/components/HTag.vue';
 import Speed from '@/components/SpeederBue.vue';
 import PortfolioItem from '@/components/PortfolioItem.vue';
+import { useMeta } from 'vue-meta'
 export default {
 	name: 'ServicesV',
 	components: {
@@ -102,8 +103,25 @@ export default {
 			num: 0,
 		};
 	},
-	computed: {
-
+	setup() {
+	},
+	computed() {
+		useMeta(
+			{
+				title: 'Sprint-Site | ' + this.$store.state.meta.title,
+				htmlAttrs: { lang: 'ru', amp: true },
+				meta: [{
+					vmid: 'description',
+					name: 'description',
+					content: this.$store.state.meta.contents,
+				}, {
+					vmid: 'robots',
+					name: 'robots',
+					content: "index,follow",
+				},
+				]
+			}
+		)
 	},
 	async mounted() {
 		this.$store.commit('INCREMENT_PRELODER', true);
@@ -112,6 +130,9 @@ export default {
 		console.log(this.$route.href);
 		const portfolioj = await fetch(`https://sprint-site.ru/wp-json/wpcustomusers/v2${this.$route.href}`);
 		const portfolioq = await portfolioj.json();
+		console.log(portfolioq);
+		this.$store.commit('INCREMENT_METADESCRIPT', portfolioq.post_content);
+		this.$store.commit('INCREMENT_METATITLE', portfolioq.post_title);
 		const portfolios = await fetch('https://sprint-site.ru/wp-json/wpcustomusers/v2/potfolio3/');
 		const portfolioqq = await portfolios.json();
 		console.log(portfolioqq);

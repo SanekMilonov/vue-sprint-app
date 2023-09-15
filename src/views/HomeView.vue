@@ -34,11 +34,11 @@
 	<section class="about mg-sn-1 slide-section">
 		<div class="container">
 			<div class="row">
-				<div class="aos-init about--left col col-2 col-md-12">
+				<div class="aos-init about--left col col-sm-2 col-md-12">
 					<img src="../assets/inetforallnew.png" width="300" height="300"
 						alt="Создание, разработка и доработка сайтов" />
 				</div>
-				<div class="aos-init about--right col col-10 col-md-12">
+				<div class="aos-init about--right col col-sm-10 col-md-12">
 					<header>
 						<HTag :tag='"h3"' :msg='about.about_meta' />
 						<HTag :tag='"h2"' :msg='about.about_h4' />
@@ -85,6 +85,7 @@ import ButtonLink from '@/components/ButtonLink.vue';
 import CardServices from '@/components/CardServices.vue';
 import PortfolioItem from '@/components/PortfolioItem.vue';
 import FormVi from '@/components/FormVi.vue';
+import { useMeta } from 'vue-meta'
 
 export default {
 	name: 'HomeView',
@@ -94,6 +95,23 @@ export default {
 		CardServices,
 		PortfolioItem,
 		FormVi
+	},
+	setup() {
+		useMeta({
+			title: 'Sprint-Site | Главная страница',
+			htmlAttrs: { lang: 'ru', amp: true },
+			meta: [{
+				vmid: 'description',
+				name: 'description',
+				content: "Создание и доработка сайтов, по приемлемым ценам.Больше 10 лет в веб- разработке.",
+			}, {
+				vmid: 'robots',
+				name: 'robots',
+				content: "index,follow",
+			},
+			]
+		}
+		)
 	},
 	data() {
 		return {
@@ -268,5 +286,85 @@ section {
 section.message {
 	padding: 80px 0px;
 	background: url('../assets/bg-3.jpg');
+}
+
+@media (max-width: 990px) {
+
+	.about--left,
+	.about--right {
+		width: 100%;
+	}
+
+	section.about .container {
+		display: block;
+		width: 100%;
+	}
+
+	.price-items.block {
+		margin-bottom: 25px;
+		width: 95%;
+	}
+
+	.gx-3 article {
+		margin-bottom: 25px;
+	}
+
+	.messagety .row div {
+		width: 100%;
+		margin-bottom: 25px;
+	}
+
+	.carousel-inner .carousel-item .caption {
+		width: 90%;
+		margin: auto;
+		left: 4%;
+		right: auto;
+	}
+
+	footer.footer {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+	}
+
+	footer.footer .content {
+		width: 100%;
+	}
+
+	footer.footer .content .row ul {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	footer #contact-footer li {
+		border-bottom: 1px solid;
+	}
+
+	.menu_menju_container li {
+		border-bottom: 1px solid;
+		text-align: center;
+		margin: auto;
+		padding: 5px 0px;
+	}
+
+	.menu_menju_container li a {
+		display: flex;
+		text-decoration: none;
+		color: #999;
+		min-width: 250px;
+		justify-content: flex-start;
+	}
+
+	footer h3 {
+		text-align: center;
+		border-bottom: 1px dotted;
+		padding-bottom: 16px;
+		display: block;
+	}
+
+	.fot_menu {
+		margin-bottom: 20px;
+	}
 }
 </style>

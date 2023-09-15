@@ -9,7 +9,7 @@
 	</section>
 </template>
 <script>
-
+import { useMeta } from 'vue-meta'
 export default {
 	name: 'ErrorViem',
 	components: {
@@ -17,6 +17,22 @@ export default {
 	data() {
 		return {
 		};
+	}, setup() {
+		useMeta({
+			title: 'Sprint-Site | Ошибка 404',
+			htmlAttrs: { lang: 'ru', amp: true },
+			meta: [{
+				vmid: 'description',
+				name: 'description',
+				content: "Страница не найдена",
+			}, {
+				vmid: 'robots',
+				name: 'robots',
+				content: "noindex, follow",
+			},
+			]
+		}
+		)
 	},
 	async mounted() {
 	}

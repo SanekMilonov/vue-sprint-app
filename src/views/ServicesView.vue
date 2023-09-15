@@ -160,7 +160,7 @@
 </template>
 <script>
 import HTag from '@/components/HTag.vue';
-
+import { useMeta } from 'vue-meta'
 export default {
 	name: 'ServicesV',
 	components: {
@@ -171,6 +171,22 @@ export default {
 			portfolio: [],
 			stati: []
 		};
+	}, setup() {
+		useMeta({
+			title: 'Sprint-Site | Услуги',
+			htmlAttrs: { lang: 'ru', amp: true },
+			meta: [{
+				vmid: 'description',
+				name: 'description',
+				content: "Услуги, цены, описание и часто задаваемы вопросы. По созданию сайтов и их доработке",
+			}, {
+				vmid: 'robots',
+				name: 'robots',
+				content: "index,follow",
+			},
+			]
+		}
+		)
 	},
 	methods: {
 		async profcms(menu, url) {

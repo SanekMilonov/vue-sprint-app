@@ -5,7 +5,7 @@
 			<div v-if="arr === 'menuarr'">
 				<ul className='menu'>
 					<li v-for="item in data.menuarr" :key="item.id">
-						<router-link :to="item.path">{{ item.title }}</router-link>
+						<router-link :to="item.path" @:click="profstandart(item.title)">{{ item.title }}</router-link>
 					</li>
 				</ul>
 			</div>
@@ -80,6 +80,25 @@ export default {
 			this.$store.commit('INCREMENT_PAGE', portfolioq.page);
 			this.$store.commit('INCREMENT_PORTFOLIO', portfolioq.post);
 			this.$store.commit('INCREMENT_MAXPAGE', portfolioq.max_num_pages);
+		},
+		async profstandart(text) {
+			if (text === "Портфолио") {
+				this.$store.commit('INCREMENT_PRELODER', true);
+				const portfolioj = await fetch(`https://sprint-site.ru/wp-json/wpcustomusers/v2/portfolio/`);
+				const portfolioq = await portfolioj.json();
+				this.$store.commit('INCREMENT_PRELODER', false);
+				console.log(portfolioq);
+				this.$store.commit('INCREMENT_MENUTITLE', 'portfolio');
+				this.$store.commit('INCREMENT_HEIDER_HREF', 'null');
+				window.scrollTo(0, 0);
+				this.$store.commit('INCREMENT_HEIDER_LIST', "Портфолио");
+				this.$store.commit('INCREMENT_HEIDER_CENIA', 0);
+				this.$store.commit('INCREMENT_HEIDER_IMG', "/Hederprof/macbook.jpg");
+				this.$store.commit('INCREMENT_HEIDER_CONTENT', "Здесь собрана небольшая часть сайтов над которыми я работал.К сожалению большую часть сайтов я потерял при переустановке виндус. Еще часть сайтов прекратили свое существование или изменили дизайн.Некоторые мне удалось восстановить из архивов, но не все.");
+				this.$store.commit('INCREMENT_PAGE', portfolioq.page);
+				this.$store.commit('INCREMENT_PORTFOLIO', portfolioq.post);
+				this.$store.commit('INCREMENT_MAXPAGE', portfolioq.max_num_pages);
+			}
 		}
 	}
 	/*setup(props) {
@@ -143,5 +162,16 @@ footer.footer ul li a:hover,
 footer.footer ul li a i {
 	/*font-size: 20px;*/
 	margin-right: 20px;
+}
+
+@media (max-width: 990px) {
+
+	footer.footer ul li {
+		list-style: none;
+		display: flex;
+		width: 100%;
+		justify-content: center;
+	}
+
 }
 </style>

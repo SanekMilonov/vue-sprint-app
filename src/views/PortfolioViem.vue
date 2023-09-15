@@ -29,6 +29,7 @@ import HeiderPortfoli from '@/components/HeiderPortfoli.vue';
 import PortFolioList from '@/components/PortfolioList.vue';
 import Pagination from '@/components/Pagination.vue';
 import SidebarMenu from '@/components/SidebarMenu.vue';
+import { useMeta } from 'vue-meta'
 export default {
 	name: 'ServicesV',
 	components: {
@@ -46,8 +47,26 @@ export default {
 			n: 0,
 			page: 1,
 		};
+	}, setup() {
+
 	},
 	async mounted() {
+		useMeta(
+			{
+				title: 'Sprint-Site | ' + this.$store.state.meta.title,
+				htmlAttrs: { lang: 'ru', amp: true },
+				meta: [{
+					vmid: 'description',
+					name: 'description',
+					content: this.$store.state.meta.contents,
+				}, {
+					vmid: 'robots',
+					name: 'robots',
+					content: "index,follow",
+				},
+				]
+			}
+		)
 		this.$store.commit('INCREMENT_PRELODER', true);
 		console.log(this.$store.state.page)
 		const lrt = this.$route.params.page;
@@ -69,6 +88,8 @@ export default {
 		this.my = my_servecq;
 		this.cms = cms_servesq;
 		this.$store.commit('INCREMENT_PRELODER', false);
+		this.$store.commit('INCREMENT_METADESCRIPT', this.$store.state.meta.title);
+		this.$store.commit('INCREMENT_METATITLE', this.$store.state.meta.contents);
 	}
 }
 </script>

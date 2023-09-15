@@ -3,7 +3,9 @@
 		<img src="../public/logotip/preloder.gif" />
 	</div>
 	<the-navbars-vue />
+	<metainfo></metainfo>
 	<router-view />
+
 	<NavFooterVue />
 </template>
 
@@ -39,6 +41,10 @@ export default {
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
 	color: #2c3e50;
+}
+
+div#app {
+	overflow: hidden;
 }
 
 .activio {

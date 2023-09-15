@@ -43,6 +43,7 @@
 import HTag from '@/components/HTag.vue';
 import Navik from '@/components/Navik.vue';
 import PortfolioItem from '@/components/PortfolioItem.vue';
+import { useMeta } from 'vue-meta';
 
 export default {
 	name: 'AboutV',
@@ -50,6 +51,22 @@ export default {
 		HTag,
 		Navik,
 		PortfolioItem,
+	}, setup() {
+		useMeta({
+			title: 'Sprint-Site | Обо мне',
+			htmlAttrs: { lang: 'ru', amp: true },
+			meta: [{
+				vmid: 'description',
+				name: 'description',
+				content: "Создаю и дорабатываю сайты.",
+			}, {
+				vmid: 'robots',
+				name: 'robots',
+				content: "index,follow",
+			},
+			]
+		}
+		)
 	},
 	data() {
 		return {

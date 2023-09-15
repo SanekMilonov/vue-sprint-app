@@ -43,7 +43,7 @@ export default {
 	},
 	async mounted() {
 		const brandImgs = {
-			'1C Bitrix': '/logotip/html.svg',
+			'1C Bitrix': '/logotip/1c_bitrix_logo.svg.png.webp',
 			'Angular': '/logotip/angular_full_color_logo.svg.png',
 			'CS-Cart': '/logotip/cs-cart-e1651150902132.png',
 			'Drupal': '/logotip/logo-drupal-e1651150843917.png',
@@ -169,10 +169,6 @@ export default {
 		float: none;
 		margin: 0px;
 		margin-bottom: 40px;
-	}
-
-	.set__item .set__icon {
-		float: none;
 	}
 
 	.set__detail .set__meta .set__high {
