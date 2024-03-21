@@ -2,7 +2,7 @@
 	<div class="widget_title">
 		<h3>{{ title }}</h3>
 		<ul class="widget_list">
-			<template v-for="post in data" :key="post.ID">
+			<template v-for="post in data.menus" :key="post.ID">
 				<li class="widget_items"
 					v-bind:class="`${post.name === this.$store.state.heiderlist.title ? 'active' : 'null'}`">
 					<router-link :to='"/portfolio" + post.url' @:click="profcms(post.name, post.url)"
